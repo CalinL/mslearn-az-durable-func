@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "mslearn_az_durable_func": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7271",
+      "launchBrowser": false
+    }
+  }
+}
