@@ -13,15 +13,15 @@ static class HelloSequence
         result += await context.CallActivityAsync<string>(nameof(SayHello), "Tokyo") + " ";
         result += await context.CallActivityAsync<string>(nameof(SayHello), "London") + " ";
         result += await context.CallActivityAsync<string>(nameof(SayHello), "Seattle");
-        await Task.Delay(5000);        
         return result;
     }
 
     [Function(nameof(SayHello))]
-    public static string SayHello([ActivityTrigger] string cityName, FunctionContext executionContext)
+    public static async Task<string> SayHello([ActivityTrigger] string cityName, FunctionContext executionContext)
     {
         ILogger logger = executionContext.GetLogger(nameof(SayHello));
         logger.LogInformation("Saying hello to {name}", cityName);
+        await Task.Delay(5000);
         return $"Hello, {cityName}!";
     }
 
